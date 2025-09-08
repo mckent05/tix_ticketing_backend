@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class ApplicationController < ActionController::API
+  respond_to :json
   before_action :update_allowed_parameters, if: :devise_controller?
 
   protected

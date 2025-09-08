@@ -9,6 +9,7 @@ module Mutations
     private
 
     def current_user
+      p context
       context[:current_user]
     end
 

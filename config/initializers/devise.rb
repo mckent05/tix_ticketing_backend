@@ -17,6 +17,9 @@ Devise.setup do |config|
     jwt.revocation_requests = [
       ['POST', %r{^/graphql$}]
     ]
+    jwt.request_formats = {
+      user: [:json]
+    }
     jwt.expiration_time = 15.day.to_i
   end
   # The secret key used by Devise. Devise uses this key to generate

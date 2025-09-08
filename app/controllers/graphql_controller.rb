@@ -12,9 +12,10 @@ class GraphqlController < ApplicationController
     operation_name = params[:operationName]
     context = {
       # Query context goes here, for example:
-      current_user:,
+      current_user: current_user,
+      controller: self,
       sign_in: ->(user) { sign_in!(user) },
-      sign_out: ->(_user) { sign_out!(current_user) }
+      sign_out: ->{ sign_out!(current_user) }
     }
     result = TixTicketingBackendSchema.execute(query, variables:, context:,
                                                       operation_name:)

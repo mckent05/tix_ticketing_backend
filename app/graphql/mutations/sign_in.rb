@@ -13,7 +13,9 @@ module Mutations
       raise GraphQL::ExecutionError, 'Invalid email or password' unless user&.valid_password?(password)
 
       context[:sign_in].call(user)
-      { user:, errors: [] }
+
+      token = context[:controller].request.env['warden-jwt_auth.token']
+      { user:, errors: [], token: token }
     end
   end
 end
